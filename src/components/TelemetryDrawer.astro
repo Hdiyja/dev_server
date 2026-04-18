@@ -1,0 +1,138 @@
+---
+---
+
+<aside id="telemetry-drawer" class="fixed top-0 right-0 w-full md:w-1/3 min-w-[320px] max-w-md h-screen bg-black border-l border-brand-wave z-[100] transform translate-x-full transition-transform duration-300 ease-out font-mono flex flex-col shadow-[0_0_40px_rgba(0,240,255,0.2)]">
+    <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-[#0D1117] hover:bg-brand-void glow-scan relative overflow-hidden">
+        <span class="text-brand-wave text-sm font-bold tracking-widest uppercase relative z-10">sys.telemetry_stream</span>
+        <button id="telemetry-close" class="text-gray-500 hover:text-brand-rust transition-colors focus:outline-none relative z-10 hover:animate-pulse">
+            [ x ] Close
+        </button>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
+        <div>
+            <h2 id="telemetry-title" class="text-3xl font-bold text-white mb-4 font-sans tracking-tight"></h2>
+            <p id="telemetry-desc" class="text-gray-400 text-sm leading-loose"></p>
+            <div id="telemetry-extended" class="hidden"></div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <span class="text-gray-600 text-xs mb-4 block uppercase tracking-widest">Dependencies // Loaded_Modules</span>
+            <ul id="telemetry-tech" class="space-y-3 text-sm">
+                <!-- Tech items injected here -->
+            </ul>
+            <div id="telemetry-unloaded" class="mt-4 pt-4 border-t border-gray-900 space-y-3 text-sm opacity-50">
+                <li><span class="text-gray-700">[   ]</span> <span class="text-gray-600 line-through">Legacy JS</span></li>
+                <li><span class="text-gray-700">[   ]</span> <span class="text-gray-600 line-through">Bloatware</span></li>
+            </div>
+        </div>
+        
+        <div class="pt-8 pb-8">
+            <a id="telemetry-link" href="/" target="_blank" class="inline-block border border-gray-700 bg-[#0D1117] text-gray-300 px-6 py-3 hover:border-brand-wave hover:text-brand-wave hover:bg-brand-wave/10 transition-all font-bold tracking-widest uppercase text-xs">
+                > VIEW_ON_GITHUB
+            </a>
+        </div>
+    </div>
+</aside>
+
+<style>
+/* Custom subtle scrollbar for the drawer */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #000;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+</style>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const drawer = document.getElementById('telemetry-drawer');
+        const closeBtn = document.getElementById('telemetry-close');
+        
+        const titleEl = document.getElementById('telemetry-title');
+        const descEl = document.getElementById('telemetry-desc');
+        const extendedEl = document.getElementById('telemetry-extended');
+        const techList = document.getElementById('telemetry-tech');
+        const linkEl = document.getElementById('telemetry-link') as HTMLAnchorElement;
+
+        // Open handler
+        const handleOpen = (e: Event) => {
+            const customEvent = e as CustomEvent;
+            const data = customEvent.detail;
+            
+            if (data.title) titleEl!.textContent = data.title;
+            if (data.desc) descEl!.textContent = data.desc;
+
+            if (extendedEl) {
+                if (data.extendedHtml) {
+                    extendedEl.innerHTML = data.extendedHtml;
+                    extendedEl.classList.remove('hidden');
+                } else {
+                    extendedEl.innerHTML = '';
+                    extendedEl.classList.add('hidden');
+                }
+            }
+            
+            if (data.link && data.link !== '#' && data.title !== 'Quantum Engine') {
+                linkEl!.style.display = 'inline-block';
+                linkEl!.href = data.link;
+            } else {
+                linkEl!.style.display = 'none';
+            }
+            
+            if (data.tech) {
+                try {
+                    const techs = JSON.parse(data.tech);
+                    if (Array.isArray(techs) && techList) {
+                        techList.innerHTML = techs.map((t: string) => `
+                            <li>
+                                <span class="text-brand-wave mr-2">[ x ]</span>
+                                <span class="text-gray-300 font-medium">${t}</span>
+                            </li>
+                        `).join('');
+                    }
+                } catch (err) {
+                    console.error('Failed to parse tech stack for telemetry', err);
+                }
+            }
+
+            drawer?.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden'; // prevent bg scroll
+        };
+
+        // Close handler
+        const handleClose = () => {
+            drawer?.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+            document.dispatchEvent(new CustomEvent('telemetry:close'));
+        };
+
+        document.addEventListener('telemetry:open', handleOpen);
+        closeBtn?.addEventListener('click', handleClose);
+
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !drawer?.classList.contains('translate-x-full')) {
+                handleClose();
+            }
+        });
+        
+        // Click outside to close (optional, but requested by absolute black/1px border design)
+        document.addEventListener('click', (e) => {
+            if (!drawer?.classList.contains('translate-x-full')) {
+                const target = e.target as HTMLElement;
+                // If click is outside drawer and not on a trigger button
+                if (!drawer?.contains(target) && !target.closest('.telemetry-trigger')) {
+                    handleClose();
+                }
+            }
+        });
+    });
+</script>

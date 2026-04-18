@@ -1,0 +1,99 @@
+---
+import Badge from './Badge.astro';
+---
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8 font-sans w-full max-w-full isolate surface-square p-8 md:p-12 border border-gray-800 relative shadow-2xl">
+    <div class="space-y-6">
+        <h2 class="text-3xl font-bold tracking-tight text-white mb-4 z-10 relative">
+            <span class="text-brand-rust">sys</span>.<span class="text-brand-wave">Specs</span>
+        </h2>
+        
+        <div class="bg-black border border-gray-800 rounded-none p-6 font-mono text-sm leading-relaxed z-10 relative saturate-200">
+            <div class="flex items-start justify-between">
+                <span class="text-gray-400">OS_Architecture</span>
+                <span class="text-white font-medium text-right">B.S. Computer Science<br/><span class="text-xs text-gray-500">Federico II University</span></span>
+            </div>
+            <div class="flex items-start justify-between mt-3">
+                <span class="text-gray-400">Current_Runtime</span>
+                <span class="text-white font-medium">Naples, Campania, IT</span>
+            </div>
+            
+            <div class="mt-6 border-t border-gray-800 pt-4">
+                <p class="text-brand-rust text-xs uppercase tracking-widest mb-3">Daily Experience</p>
+                <div class="flex flex-wrap gap-2">
+                    <Badge variant="rust">Rust</Badge>
+                    <Badge variant="rust">C++</Badge>
+                    <Badge variant="rust">SQL</Badge>
+                    <Badge variant="rust">Java</Badge>
+                    <Badge variant="rust">TypeScript</Badge>
+                    <Badge variant="wave">Spring Boot</Badge>
+                    <Badge variant="wave">React / Angular</Badge>
+                </div>
+            </div>
+
+            <div class="mt-4 border-t border-gray-900 pt-4">
+                <p class="text-brand-wave text-xs uppercase tracking-widest mb-3">Familiar With</p>
+                <div class="flex flex-wrap gap-2">
+                    <Badge variant="gray">Bash</Badge>
+                    <Badge variant="gray">PL/pgSQL</Badge>
+                    <Badge variant="gray">Python</Badge>
+                </div>
+            </div>
+
+            <div class="mt-4 border-t border-gray-900 pt-4">
+                <p class="text-brand-amethyst text-xs uppercase tracking-widest mb-3">Other Relevant Skills</p>
+                <div class="flex flex-wrap gap-2">
+                    <Badge variant="gray">WASM</Badge>
+                    <Badge variant="gray">Docker</Badge>
+                    <Badge variant="gray">Docker Compose</Badge>
+                    <Badge variant="gray">Valgrind</Badge>
+                    <Badge variant="gray">CMake</Badge>
+                    <Badge variant="gray">PostgreSQL</Badge>
+                </div>
+            </div>
+
+            <div class="mt-4 border-t border-gray-900 pt-4">
+                <p class="text-brand-amethyst text-xs uppercase tracking-widest mb-3">System Logs</p>
+                <div class="text-gray-400 text-xs leading-relaxed">
+                    > Published in <a href="https://www.researchgate.net/publication/322478644_The_Voice_of_the_Universe_From-_to_Alternating_School_and_Work" target="_blank" class="text-brand-amethyst hover:underline">"The Voice of the Universe"</a> (AstroMusic project). <br/>
+                    > Open Source contributor (Chirpy theme).
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-col p-6 border border-gray-800 bg-black/60 relative z-10">
+        <div class="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+            <span class="text-brand-wave font-mono text-xs uppercase tracking-widest">sys.Profile // bio.txt</span>
+            <span class="text-gray-500 font-mono text-xs uppercase flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                Online
+            </span>
+        </div>
+        
+        <div class="flex-1 text-gray-300 font-sans text-sm leading-relaxed space-y-4">
+            <p>
+                I am a <strong>Backend-focused Software Engineer</strong> and Computer Science student at the University of Naples Federico II, blending a deep passion for algorithms with hands-on software engineering.
+            </p>
+            <p>
+                From designing high-performance <strong>C++</strong> systems to deploying containerized full-stack applications, I focus on turning theoretical concepts into robust, real-world solutions.
+            </p>
+            
+            <div class="my-6 border border-brand-wave/30 bg-brand-wave/5 p-4 rounded-sm border-l-2 border-l-brand-wave">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h4 class="text-white font-bold text-base">Software Engineer</h4>
+                        <a href="https://jefnapoli.com" target="_blank" class="text-brand-wave hover:underline text-xs font-mono tracking-widest uppercase mt-1 inline-block">@ jefnapoli.com</a>
+                    </div>
+                    <span class="text-gray-400 font-mono text-[10px] tracking-wider bg-black/50 px-2 py-1 border border-gray-800 rounded">10/2025 - PRESENT</span>
+                </div>
+                <p class="text-gray-400 text-sm mt-3">
+                    Focusing specifically on data analysis projects and engineering data-driven solutions to optimize business intelligence outputs.
+                </p>
+            </div>
+
+            <p>
+                When I'm not building projects, I'm engaging with the community at conferences or exploring the intricacies of database systems and open-source tools.
+            </p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('logbook');
+  return entries.map(entry => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout>
+  <article class="max-w-3xl mx-auto py-12 relative z-10 surface-square backdrop-blur-xl p-8 border border-gray-800">
+    <header class="mb-12 pb-8 border-b border-gray-800 text-center">
+      <div class="inline-flex gap-2 mb-6 font-mono text-[10px] uppercase tracking-widest text-gray-400">
+        {entry.data.tags.map((tag) => (
+          <span class="px-2 py-1 rounded border border-gray-800 bg-gray-900">{tag}</span>
+        ))}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6 font-sans">
+        {entry.data.title}
+      </h1>
+      <div class="font-mono text-brand-wave text-sm select-all">
+        compiled timestamp :: {entry.data.date.toISOString().slice(0, 10)}
+      </div>
+    </header>
+
+    <div class="prose prose-invert prose-p:text-gray-300 prose-headings:text-white prose-a:text-brand-wave hover:prose-a:text-brand-amethyst prose-code:text-brand-rust max-w-none prose-img:rounded-xl">
+      <Content />
+    </div>
+
+    <div class="mt-20 pt-8 border-t border-gray-800 flex justify-between font-mono text-sm">
+      <a href="/" class="text-gray-500 hover:text-brand-rust transition-colors">&lt;cd ../</a>
+      <span class="text-gray-600">[EOF]</span>
+    </div>
+  </article>
+</Layout>

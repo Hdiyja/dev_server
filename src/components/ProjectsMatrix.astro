@@ -1,0 +1,243 @@
+---
+import Badge from './Badge.astro';
+
+const projects = [
+    {
+        title: "Quantum Engine",
+        description: "A high-performance quantum state simulation engine built with Rust and WebAssembly, integrated directly into this portfolio. It demonstrates zero-cost abstractions and memory safety while performing complex field calculations in real-time.",
+        type: "systems",
+        link: "https://github.com/CsaProtocol/portfolio",
+        tech: ["Rust", "WASM", "React", "TypeScript", "Vite"],
+        isRustProject: true,
+        extendedHtml: `<div class="space-y-6 mt-6 pt-6 border-t border-gray-800/60">
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> WebAssembly Core</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">The core computational engine is written in Rust and compiled to WASM, providing near-native performance for mathematical simulations directly in the browser.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Zero-Cost Abstractions</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Utilizes Rust's ownership model and type system to manage memory without a garbage collector, ensuring predictable performance and safety.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Interop & Bindings</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Features custom wasm-bindgen glue code to bridge the gap between high-level React UI components and low-level Rust physics logic.</p>
+    </div>
+</div>`
+    },
+    {
+        title: "DietiEstates25",
+        description: "A secure, enterprise-grade full-stack real estate platform. Built with a React Vite frontend and a Spring Boot 3 backend over PostgreSQL. It features robust JWT authentication, managing hierarchical user roles (Customer, Agent, Manager, Support, Admin), and extensive APIs for property listing, visit bookings, notifications, and weather integration.",
+        type: "web",
+        link: "#",
+        tech: ["React", "Vite", "Spring Boot", "Java", "PostgreSQL"],
+        extendedHtml: `<div class="space-y-6 mt-6 pt-6 border-t border-gray-800/60">
+    <div class="space-y-2">
+        <h4 class="text-brand-rust font-bold font-mono text-sm uppercase tracking-widest">> API Security & JWT</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Designed a Spring Boot API architecture prioritized for security, utilizing JWT to ensure safe data transmission and scalable session management.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-rust font-bold font-mono text-sm uppercase tracking-widest">> PL/pgSQL Database Logic</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Leveraged PostgreSQL and PL/pgSQL to script custom database logic, ensuring efficient execution of complex queries regarding property availability and booking conflicts.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-rust font-bold font-mono text-sm uppercase tracking-widest">> Dynamic React UI</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Created a dynamic, component-based UI in React, resulting in a highly interactive experience that reduces friction for users searching for properties.</p>
+    </div>
+</div>`
+    },
+    {
+        title: "MyVideoteca",
+        description: "A multi-threaded TCP server built from scratch in C using raw POSIX sockets and pthreads for strict manual memory management and thread synchronization. It features a native Kotlin Android frontend communicating asynchronously via Coroutines, with PostgreSQL persistence and scalable deployment orchestrated via Docker Compose.",
+        type: "systems",
+        link: "https://github.com/CsaProtocol/MyVideoteca",
+        tech: ["C", "POSIX", "Kotlin", "Docker", "PostgreSQL"],
+        extendedHtml: `<div class="space-y-6 mt-6 pt-6 border-t border-gray-800/60">
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> C TCP Server Core & Memory</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Engineered a multi-threaded TCP server entirely from scratch using raw POSIX sockets in C. Implemented strict manual string management and parsing (malloc/free) meticulously handling null-termination to guarantee memory safety without high-level bloat.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Thread Synchronization</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Architected a rigorous concurrency model utilizing pthreads, mutexes, and condition variables. This ensures precise thread synchronization, safe shared resource access, and prevents race conditions across high-volume simultaneous client connections.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Kotlin Coroutines UI</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Built a native Android App UI communicating asynchronously over TCP. Leveraged Kotlin Coroutines and Flows for non-blocking state updates, providing an exceptionally smooth user experience while gracefully mitigating network volatility.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Docker Strategy</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Orchestrated the distributed stack using Docker Compose. Containerized the C server alongside a PostgreSQL database, automating reproducible network bindings across isolated Linux deploy environments.</p>
+    </div>
+</div>`
+    },
+    {
+        title: "AlgorithmPractice",
+        description: "A comprehensive and highly optimized library of fundamental data structures and high-performance algorithms implemented in modern C++20. Focused on memory safety, cache locality, and algorithmic efficiency. Includes a robust custom test suite and an easily integrable CMake build system for production environments.",
+        type: "systems",
+        link: "https://github.com/CsaProtocol/AlgorithmPractice",
+        tech: ["C++20", "Data Structures", "CMake"],
+        extendedHtml: `<div class="space-y-6 mt-6 pt-6 border-t border-gray-800/60">
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Generic Containers & Type Safety</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Implemented robust generic containers including Binary Search Trees, Heaps, and Priority Queues utilizing C++20 Concepts and Templates to ensure compile-time type safety.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Memory Profiling & RAII</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Created a custom testing suite and integrated Valgrind for memory profiling, ensuring strict adherence to RAII principles for memory management.</p>
+    </div>
+    <div class="space-y-2">
+        <h4 class="text-brand-wave font-bold font-mono text-sm uppercase tracking-widest">> Object-Oriented Architecture</h4>
+        <p class="text-gray-400 text-sm leading-relaxed">Designed a modular object-oriented architecture using inheritance and polymorphism to share logic across linear and non-linear data structures, maximizing code reusability.</p>
+    </div>
+</div>`
+    },
+    {
+        title: "TortoiseHospital",
+        description: "A sophisticated JavaFX desktop application explicitly architected to manage the healthcare lifecycle, daily care routines, and recovery tracking of sea turtles at National Recovery Centers. Includes detailed medical records management, tracking of biological parameters, and a highly normalized PostgreSQL database backend for reliable data persistence.",
+        type: "desktop",
+        link: "https://github.com/CsaProtocol/TortoiseHospital",
+        tech: ["Java", "JavaFX", "PostgreSQL", "OOP"]
+    },
+    {
+        title: "AstroMusic",
+        description: "An award-winning scientific application created in 2018 for the Astroparticle physics project 'The Voice of the Universe'. It involves complex data analysis and physics simulations using C++ to process and visualize signals from cosmic rays, transforming particle data into sonified outputs. The project successfully bridged the gap between raw scientific data and public accessibility.",
+        type: "research",
+        link: "https://github.com/CsaProtocol/AstroMusic",
+        tech: ["C++", "Physics", "Data Analysis"]
+    }
+];
+
+// Determine CSS classes for rendering
+const getGridStyles = (type) => {
+    switch (type) {
+        case 'web':
+        case 'desktop':
+            return 'border-brand-rust/50 hover:border-brand-rust group bg-black/80 shadow-[inset_0_0_10px_rgba(206,65,43,0.05)]';
+        case 'research':
+        case 'systems':
+            return 'border-brand-wave/50 hover:border-brand-wave group bg-black/80 shadow-[inset_0_0_10px_rgba(0,240,255,0.05)]';
+        default:
+            return 'border-brand-amethyst/50 hover:border-brand-amethyst group bg-black/80 shadow-[inset_0_0_10px_rgba(168,85,247,0.05)]';
+    }
+};
+
+const getBadgeVariant = (type) => {
+    switch (type) {
+        case 'web':
+        case 'desktop':
+            return 'rust';
+        case 'research':
+        case 'systems':
+            return 'wave';
+        default:
+            return 'amethyst';
+    }
+};
+---
+
+<section class="relative isolate z-10 surface-square p-8 md:p-12 border border-gray-800">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+        <div>
+            <h2 class="text-3xl font-bold tracking-tight text-white mb-2 font-mono">
+                 <span class="text-gray-600">|</span>Projects<span class="text-gray-600">_</span>
+            </h2>
+            <p class="text-sm font-mono text-gray-500 max-w-xl">
+                Select category below to filter projects. 
+            </p>
+        </div>
+        
+        <div class="inline-flex rounded-md shadow-sm border border-gray-700 font-mono text-xs bg-black" role="group" id="project-filters">
+            <button type="button" data-filter="web" class="px-4 py-2 border-r border-gray-700 text-gray-400 hover:text-brand-rust hover:bg-gray-800 focus:text-brand-rust focus:bg-gray-800 transition-colors rounded-l-md active-filter">
+                Web
+            </button>
+            <button type="button" data-filter="desktop" class="px-4 py-2 border-r border-gray-700 text-gray-400 hover:text-brand-rust hover:bg-gray-800 focus:text-brand-rust focus:bg-gray-800 transition-colors">
+                Desktop
+            </button>
+            <button type="button" data-filter="systems" class="px-4 py-2 border-r border-gray-700 text-gray-400 hover:text-brand-wave hover:bg-gray-800 focus:text-brand-wave focus:bg-gray-800 transition-colors">
+                Systems & C++
+            </button>
+            <button type="button" data-filter="research" class="px-4 py-2 text-gray-400 hover:text-brand-wave hover:bg-gray-800 focus:text-brand-wave focus:bg-gray-800 transition-colors rounded-r-md">
+                Research
+            </button>
+            <button type="button" data-filter="all" class="px-4 py-2 text-white bg-gray-800 ml-2 rounded border border-gray-700 hover:bg-gray-700 transition-colors">
+                 Reset
+            </button>
+        </div>
+    </div>
+
+    <!-- The Matrix Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
+        {projects.map((proj) => (
+            <div 
+                class={`p-6 border rounded-lg transition-all duration-300 project-card ${getGridStyles(proj.type)}`}
+                data-type={proj.type}
+            >
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold text-gray-200 group-hover:text-white transition-colors">{proj.title}</h3>
+                    <Badge variant={getBadgeVariant(proj.type)}>
+                        {proj.type}
+                    </Badge>
+                </div>
+                <p class="text-gray-400 font-sans text-sm leading-relaxed">{proj.description}</p>
+                <div class="mt-6 flex justify-end">
+                     <button 
+                         class="text-gray-500 group-hover:text-white transition-all transform group-hover:translate-x-1 font-mono text-xs cursor-pointer select-none telemetry-trigger focus:outline-none"
+                         data-title={proj.title}
+                         data-desc={proj.description}
+                         data-link={proj.link}
+                         data-tech={JSON.stringify(proj.tech)}
+                         data-extended-html={proj.extendedHtml || ''}
+                     >
+                         > ./execute
+                     </button>
+                </div>
+            </div>
+        ))}
+    </div>
+</section>
+
+<script>
+    // Client-side filtering logic
+    document.addEventListener('astro:page-load', () => {
+        const filters = document.querySelectorAll('#project-filters button[data-filter]');
+        const projects = document.querySelectorAll('#projects-grid .project-card');
+
+        filters.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetFilter = button.getAttribute('data-filter');
+                
+                // Update active state visuals on buttons (reset all then apply)
+                filters.forEach(btn => btn.classList.remove('active-filter', 'bg-gray-800'));
+                button.classList.add('active-filter', 'bg-gray-800');
+                
+                // Filter logic
+                projects.forEach(project => {
+                    if (targetFilter === 'all' || project.getAttribute('data-type') === targetFilter) {
+                        project.classList.remove('hidden');
+                        setTimeout(() => project.classList.remove('opacity-0'), 50);
+                    } else {
+                        project.classList.add('opacity-0');
+                        setTimeout(() => project.classList.add('hidden'), 300); // match duration-300
+                    }
+                });
+            });
+        });
+
+        // Attach Telemetry Events
+        const telemetryTriggers = document.querySelectorAll('.telemetry-trigger');
+        telemetryTriggers.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = e.currentTarget;
+                const detail = {
+                    title: target.getAttribute('data-title'),
+                    desc: target.getAttribute('data-desc'),
+                    link: target.getAttribute('data-link'),
+                    tech: target.getAttribute('data-tech'),
+                    extendedHtml: target.getAttribute('data-extended-html')
+                };
+                document.dispatchEvent(new CustomEvent('telemetry:open', { detail }));
+            });
+        });
+    });
+</script>

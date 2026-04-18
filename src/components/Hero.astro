@@ -1,0 +1,109 @@
+---
+---
+
+<div class="w-full relative py-16 px-8 md:py-24 md:px-12 flex items-center justify-start rounded-xl surface-square shadow-[inset_0_1px_0_#FFF1,inset_0_-1px_0_#FFF1]">
+    <div class="relative z-10 pointer-events-none flex flex-col items-start justify-center text-left">
+        <p class="font-mono text-brand-rust mb-2 select-all tracking-wider" data-scramble>&gt; ./bin/executor --flag=quantum</p>
+        <p class="font-mono text-gray-500 mb-10 select-all" data-scramble="150" data-delay="600">Compiling core architecture...</p>
+        <h1 class="text-4xl md:text-6xl font-sans font-bold text-white tracking-tight leading-none drop-shadow-2xl">
+          Eduardo (Hdiyja) <br />
+          <span class="block mt-4 text-2xl md:text-4xl text-gray-300">
+             <span class="text-brand-wave">Backend-focused</span> Software Engineer
+          </span>
+        </h1>
+        <p class="mt-6 text-gray-300 font-mono text-sm max-w-xl border-l-[2px] border-brand-wave pl-4 py-1 leading-loose">
+           Blending a deep passion for algorithms with hands-on software engineering. From C++ systems to full-stack applications.
+        </p>
+    </div>
+</div>
+
+<script>
+    const CHARS = '!<>-_\\\\/[]{}—=+*^?#________';
+    
+    class Scrambler {
+        el: HTMLElement;
+        chars: string;
+        queue: Array<{ from: string; to: string; start: number; end: number; char?: string }>;
+        frameRequest: number;
+        frame: number;
+        resolve: (value: unknown) => void;
+
+        constructor(el: HTMLElement) {
+            this.el = el;
+            this.chars = CHARS;
+            this.update = this.update.bind(this);
+            this.queue = [];
+            this.frameRequest = 0;
+            this.frame = 0;
+            this.resolve = () => {};
+        }
+
+        setText(newText: string, duration: number = 800) {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => this.resolve = resolve);
+            this.queue = [];
+
+            // About 60 frames per second. So ~60 frames for 1000ms.
+            // Let's just use frame numbers to stagger.
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || '';
+                const to = newText[i] || '';
+                const start = Math.floor(Math.random() * 20);
+                const end = start + Math.floor(Math.random() * (duration / 16));
+                this.queue.push({ from, to, start, end });
+            }
+
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
+        }
+
+        update() {
+            let output = '';
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i];
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = this.randomChar();
+                        this.queue[i].char = char;
+                    }
+                    output += `<span class="opacity-50">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+                this.resolve('done');
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+    }
+
+    // Initialize scramble effect
+    document.querySelectorAll('[data-scramble]').forEach((el) => {
+        const textToScramble = (el as HTMLElement).innerText;
+        const dur = (el as HTMLElement).dataset.scramble ? parseInt((el as HTMLElement).dataset.scramble!) : 800;
+        const delay = (el as HTMLElement).dataset.delay ? parseInt((el as HTMLElement).dataset.delay!) : 0;
+        
+        // Blank out text initially
+        (el as HTMLElement).innerHTML = '&nbsp;';
+        
+        setTimeout(() => {
+            const fx = new Scrambler(el as HTMLElement);
+            fx.setText(textToScramble, dur);
+        }, delay);
+    });
+</script>

@@ -1,0 +1,68 @@
+---
+import Badge from './Badge.astro';
+
+const timeline = [
+  {
+    role: "Software Developer",
+    company: "jefnapoli.com",
+    period: "10/2025 — Present",
+    description: "Implemented interactive Business Intelligence dashboards using React and TypeScript. Engineered data pipelines with Python and Pandas to transform raw business metrics into actionable insights, enabling data-driven decision making for various projects.",
+    tech: ["React", "TypeScript", "Python", "Pandas", "PostgreSQL"],
+    color: "brand-rust"
+  },
+  {
+    role: "Software Engineer & Developer",
+    company: "Independent / Academic Projects",
+    period: "Early 2025",
+    description: "Architected and implemented a diverse portfolio of systems and full-stack applications. Developed DietiEstates25 (Spring Boot), MyVideoteca (C/TCP & Kotlin), and TortoiseHospital (JavaFX). Engineered a high-performance library of Data Structures and Algorithms in C++20.",
+    tech: ["C++20", "C", "Spring Boot", "Kotlin", "JavaFX", "PostgreSQL"],
+    color: "brand-wave"
+  },
+  {
+    role: "Researcher (Alternanza Scuola-Lavoro)",
+    company: "CREF | Extreme Energy Events",
+    period: "2017 — 2018",
+    description: "Contributed to astroparticle physics data analysis and scientific software development. Work publicly recognized in the 'Voice of the Universe' scientific paper.",
+    tech: ["C++", "Data Analysis", "Scientific Computing"],
+    color: "brand-amethyst"
+  }
+];
+---
+
+<section id="experience" class="py-24 relative z-10 border-t border-gray-900 bg-[#0a0a0a]/80 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-16">
+      <h2 class="text-4xl font-bold text-white mb-2 font-sans tracking-tight">Experience_Timeline</h2>
+      <p class="text-gray-400 font-mono text-sm uppercase tracking-widest">sys.log_history()</p>
+    </div>
+
+    <div class="relative border-l border-gray-800 ml-4 md:ml-8 space-y-12">
+      {timeline.map((item, index) => (
+        <div class="relative pl-8 md:pl-12 group">
+          <!-- Timeline dot -->
+          <div class={`absolute -left-[5px] top-1.5 w-[10px] h-[10px] rounded-sm bg-${item.color} shadow-[0_0_10px_currentColor] group-hover:scale-150 transition-transform duration-300`}></div>
+          
+          <!-- Content -->
+          <div class="flex flex-col md:flex-row md:items-baseline mb-2">
+            <h3 class="text-2xl font-bold text-gray-200 group-hover:text-white transition-colors">{item.role}</h3>
+            <span class="text-brand-wave md:ml-4 font-mono text-sm mt-1 md:mt-0">@ {item.company}</span>
+          </div>
+          
+          <div class="text-gray-500 font-mono text-xs mb-4 uppercase tracking-widest bg-gray-900 inline-block px-2 py-1 border border-gray-800">
+            {item.period}
+          </div>
+          
+          <p class="text-gray-400 font-sans leading-relaxed mb-4 max-w-3xl">
+            {item.description}
+          </p>
+          
+          <div class="flex flex-wrap gap-2 mt-4">
+            {item.tech.map((t) => (
+              <Badge variant="gray">{t}</Badge>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+interface Props {
+	variant?: 'rust' | 'wave' | 'amethyst' | 'gray';
+}
+
+const { variant = 'gray' } = Astro.props;
+
+const variants = {
+	rust: 'bg-brand-rust/20 text-brand-rust border-brand-rust/30',
+	wave: 'bg-brand-wave/20 text-brand-wave border-brand-wave/30',
+	amethyst: 'bg-brand-amethyst/20 text-brand-amethyst border-brand-amethyst/30',
+	gray: 'bg-gray-800 text-gray-300 border-gray-700'
+};
+---
+
+<span class={`px-2.5 py-1 text-[10px] uppercase tracking-wider font-mono border rounded ${variants[variant]}`}>
+	<slot />
+</span>
